@@ -30,6 +30,20 @@ export default function Sidebar() {
               </Link>
             </NavigationMenuLink>
           </NavigationMenuItem>
+          <NavigationMenuItem>
+            <NavigationMenuLink asChild>
+              <Link
+                href="/facts"
+                className={`block rounded-md px-4 py-2 text-sm ${
+                  pathname === '/facts'
+                    ? 'bg-gray-200 font-semibold'
+                    : 'hover:bg-gray-100'
+                }`}
+              >
+                Facts
+              </Link>
+            </NavigationMenuLink>
+          </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
     </aside>
