@@ -4,7 +4,7 @@ export default function Home() {
       <div className="mx-auto max-w-6xl">
         <h1 className="text-2xl font-semibold">Welcome</h1>
         <p className="mt-4 text-sm text-gray-500">
-          Use the sidebar on the left to navigate. Click Matches to open the
+          Use the navigation on the top to navigate. Click Matches to open the
           matches page.
         </p>
       </div>

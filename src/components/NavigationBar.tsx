@@ -9,21 +9,21 @@ import {
   NavigationMenuItem,
 } from '@/components/ui/navigation-menu';
 
-export default function Sidebar() {
+export default function NavigationBar() {
   const pathname = usePathname();
 
   return (
-    <aside className="w-48 shrink-0">
-      <NavigationMenu>
-        <NavigationMenuList className="flex flex-col gap-2">
+    <nav className="w-full border-b bg-white">
+      <NavigationMenu className="w-full max-w-none justify-start">
+        <NavigationMenuList className="flex flex-row gap-0">
           <NavigationMenuItem>
             <NavigationMenuLink asChild>
               <Link
                 href="/matches"
-                className={`block rounded-md px-4 py-2 text-sm ${
+                className={`block rounded-none px-4 py-3 text-sm ${
                   pathname === '/matches'
-                    ? 'bg-gray-200 font-semibold'
-                    : 'hover:bg-gray-100'
+                    ? 'border-b-2 border-blue-600 font-semibold'
+                    : 'hover:bg-gray-50'
                 }`}
               >
                 Matches
@@ -34,10 +34,10 @@ export default function Sidebar() {
             <NavigationMenuLink asChild>
               <Link
                 href="/facts"
-                className={`block rounded-md px-4 py-2 text-sm ${
+                className={`block rounded-none px-4 py-3 text-sm ${
                   pathname === '/facts'
-                    ? 'bg-gray-200 font-semibold'
-                    : 'hover:bg-gray-100'
+                    ? 'border-b-2 border-blue-600 font-semibold'
+                    : 'hover:bg-gray-50'
                 }`}
               >
                 Facts
@@ -46,6 +46,6 @@ export default function Sidebar() {
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
-    </aside>
+    </nav>
   );
 }

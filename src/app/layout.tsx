@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
-import React from 'react';
-import Sidebar from '../components/Sidebar';
+import React, { Suspense } from 'react';
+import NavigationBar from '../components/NavigationBar';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -29,13 +29,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} min-h-screen antialiased`}
       >
-        <div className="flex min-h-screen items-start">
-          <div className="sticky top-0 h-screen w-48 shrink-0">
-            <Sidebar />
-          </div>
-          {/* Page content */}
-          <main className="flex-1 p-8">{children}</main>
-        </div>
+        <Suspense fallback={<nav className="h-12 w-full border-b bg-white" />}>
+          <NavigationBar />
+        </Suspense>
+        <main className="p-8">{children}</main>
       </body>
     </html>
   );
