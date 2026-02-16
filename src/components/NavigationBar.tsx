@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import TeamSelect from '@/components/TeamSelect';
 import {
   NavigationMenu,
   NavigationMenuList,
@@ -13,8 +14,8 @@ export default function NavigationBar() {
   const pathname = usePathname();
 
   return (
-    <nav className="w-full border-b bg-white">
-      <NavigationMenu className="w-full max-w-none justify-start">
+    <nav className="flex w-full items-center justify-between border-b bg-white px-8 py-3">
+      <NavigationMenu className="w-auto max-w-none justify-start">
         <NavigationMenuList className="flex flex-row gap-0">
           <NavigationMenuItem>
             <NavigationMenuLink asChild>
@@ -46,6 +47,8 @@ export default function NavigationBar() {
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
+
+      <TeamSelect />
     </nav>
   );
 }
