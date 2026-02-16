@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
 import { useTeams } from '@/hooks/useTeams';
+import { useTeamContext } from '@/context/TeamContext';
 import {
   Select,
   SelectContent,
@@ -10,14 +10,22 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 
-export default function TeamSelect() {
+interface TeamSelectProps {
+  disabled?: boolean;
+}
+
+export default function TeamSelect({ disabled = false }: TeamSelectProps) {
   const { teams, loading, error, clearError } = useTeams();
-  const [selectedTeam, setSelectedTeam] = useState<string>('');
+  const { selectedTeamId, setSelectedTeamId } = useTeamContext();
+
+  const handleChange = (value: string) => {
+    setSelectedTeamId(value);
+  };
 
   if (error) {
     return (
-      <div className="text-red-500">
-        Error loading teams: {error}
+      <div className="text-sm text-red-500">
+        Error loading teams
         <button onClick={clearError} className="ml-2 underline">
           Retry
         </button>
@@ -26,11 +34,15 @@ export default function TeamSelect() {
   }
 
   if (loading) {
-    return <div className="text-gray-500">Loading teams...</div>;
+    return <div className="text-sm text-gray-500">Loading teams...</div>;
   }
 
   return (
-    <Select value={selectedTeam} onValueChange={setSelectedTeam}>
+    <Select
+      value={selectedTeamId}
+      onValueChange={handleChange}
+      disabled={disabled}
+    >
       <SelectTrigger className="w-48">
         <SelectValue placeholder="Select a team" />
       </SelectTrigger>
