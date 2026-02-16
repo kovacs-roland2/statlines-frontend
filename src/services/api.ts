@@ -12,6 +12,17 @@ export class ApiError extends Error {
   }
 }
 
+interface Team {
+  id: number;
+  name: string;
+  short_name: string;
+}
+
+interface TeamsResponse {
+  teams: Team[];
+  total_teams: number;
+}
+
 export const matchesApi = {
   async getTeamMatches(teamName: string): Promise<MatchesResponse> {
     try {
@@ -20,6 +31,30 @@ export const matchesApi = {
       if (!response.ok) {
         throw new ApiError(
           `Failed to fetch matches: ${response.statusText}`,
+          response.status
+        );
+      }
+
+      return await response.json();
+    } catch (error) {
+      if (error instanceof ApiError) {
+        throw error;
+      }
+      throw new ApiError(
+        error instanceof Error ? error.message : 'An unknown error occurred'
+      );
+    }
+  },
+};
+
+export const teamsApi = {
+  async getTeams(): Promise<TeamsResponse> {
+    try {
+      const response = await fetch(`${API_BASE_URL}/teams`);
+
+      if (!response.ok) {
+        throw new ApiError(
+          `Failed to fetch teams: ${response.statusText}`,
           response.status
         );
       }
