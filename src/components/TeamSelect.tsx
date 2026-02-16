@@ -53,7 +53,7 @@ export default function TeamSelect({ disabled = false }: TeamSelectProps) {
       <SelectTrigger className="w-48">
         <SelectValue placeholder="Select a team" />
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent className="max-h-64 overflow-y-auto">
         {teams.map(team => (
           <SelectItem key={team.id} value={team.id.toString()}>
             {team.name} ({team.short_name})
