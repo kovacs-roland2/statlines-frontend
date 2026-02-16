@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect } from 'react';
 import { useTeams } from '@/hooks/useTeams';
 import { useTeamContext } from '@/context/TeamContext';
 import {
@@ -17,6 +18,12 @@ interface TeamSelectProps {
 export default function TeamSelect({ disabled = false }: TeamSelectProps) {
   const { teams, loading, error, clearError } = useTeams();
   const { selectedTeamId, setSelectedTeamId } = useTeamContext();
+
+  useEffect(() => {
+    if (teams.length > 0 && !selectedTeamId) {
+      setSelectedTeamId(teams[0].id.toString());
+    }
+  }, [teams, selectedTeamId, setSelectedTeamId]);
 
   const handleChange = (value: string) => {
     setSelectedTeamId(value);
