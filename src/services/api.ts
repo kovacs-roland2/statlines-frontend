@@ -23,6 +23,20 @@ interface TeamsResponse {
   total_teams: number;
 }
 
+interface Fact {
+  stat: string;
+  value: number;
+  rank: number;
+  total: number;
+}
+
+interface FactsResponse {
+  team_name: string;
+  season: string;
+  top_5_highest: Fact[];
+  top_5_lowest: Fact[];
+}
+
 export const matchesApi = {
   async getTeamMatches(teamName: string): Promise<MatchesResponse> {
     try {
@@ -55,6 +69,32 @@ export const teamsApi = {
       if (!response.ok) {
         throw new ApiError(
           `Failed to fetch teams: ${response.statusText}`,
+          response.status
+        );
+      }
+
+      return await response.json();
+    } catch (error) {
+      if (error instanceof ApiError) {
+        throw error;
+      }
+      throw new ApiError(
+        error instanceof Error ? error.message : 'An unknown error occurred'
+      );
+    }
+  },
+};
+
+export const factsApi = {
+  async getTeamFacts(teamName: string): Promise<FactsResponse> {
+    try {
+      const response = await fetch(
+        `${API_BASE_URL}/teams/interesting_team_data?team_name=${encodeURIComponent(teamName)}`
+      );
+
+      if (!response.ok) {
+        throw new ApiError(
+          `Failed to fetch facts: ${response.statusText}`,
           response.status
         );
       }
