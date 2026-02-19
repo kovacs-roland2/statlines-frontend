@@ -22,8 +22,6 @@ export default function FactsPage() {
 
   return (
     <div className="container mx-auto max-w-6xl">
-      <h1 className="mb-8 text-3xl font-semibold">Facts</h1>
-
       {error && <ErrorMessage message={error} onDismiss={clearError} />}
 
       {loading && <div className="text-gray-500">Loading facts...</div>}
