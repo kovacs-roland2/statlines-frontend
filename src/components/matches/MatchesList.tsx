@@ -1,9 +1,5 @@
-import { MatchesResponse } from '@/types/match';
+import { MatchesListProps } from '@/types/index';
 import { MatchCard } from './MatchCard';
-
-interface MatchesListProps {
-  matches: MatchesResponse;
-}
 
 export const MatchesList = ({ matches }: MatchesListProps) => {
   if (matches.matches.length === 0) {

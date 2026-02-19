@@ -1,18 +1,6 @@
 import { useState, useEffect } from 'react';
 import { teamsApi, ApiError } from '@/services/api';
-
-interface Team {
-  id: number;
-  name: string;
-  short_name: string;
-}
-
-interface UseTeamsReturn {
-  teams: Team[];
-  loading: boolean;
-  error: string | null;
-  clearError: () => void;
-}
+import { Team, UseTeamsReturn } from '@/types/index';
 
 export const useTeams = (): UseTeamsReturn => {
   const [teams, setTeams] = useState<Team[]>([]);

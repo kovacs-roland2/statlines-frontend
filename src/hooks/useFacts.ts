@@ -1,27 +1,6 @@
 import { useState, useCallback } from 'react';
 import { factsApi, ApiError } from '@/services/api';
-
-interface Fact {
-  stat: string;
-  value: number;
-  rank: number;
-  total: number;
-}
-
-interface FactsResponse {
-  team_name: string;
-  season: string;
-  top_5_highest: Fact[];
-  top_5_lowest: Fact[];
-}
-
-interface UseFactsReturn {
-  facts: FactsResponse | null;
-  loading: boolean;
-  error: string | null;
-  fetchFacts: (teamName: string) => Promise<void>;
-  clearError: () => void;
-}
+import { FactsResponse, UseFactsReturn } from '@/types/index';
 
 export const useFacts = (): UseFactsReturn => {
   const [facts, setFacts] = useState<FactsResponse | null>(null);

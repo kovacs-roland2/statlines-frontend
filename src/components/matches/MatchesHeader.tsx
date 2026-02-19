@@ -1,8 +1,5 @@
 'use client';
-
-interface MatchesHeaderProps {
-  loading: boolean;
-}
+import { MatchesHeaderProps } from '@/types';
 
 export function MatchesHeader({ loading }: MatchesHeaderProps) {
   return (

@@ -1,4 +1,5 @@
-import { MatchesResponse } from '@/types/match';
+import { MatchesResponse } from '@/types/index';
+import { TeamsResponse, FactsResponse } from '@/types';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -10,31 +11,6 @@ export class ApiError extends Error {
     super(message);
     this.name = 'ApiError';
   }
-}
-
-interface Team {
-  id: number;
-  name: string;
-  short_name: string;
-}
-
-interface TeamsResponse {
-  teams: Team[];
-  total_teams: number;
-}
-
-interface Fact {
-  stat: string;
-  value: number;
-  rank: number;
-  total: number;
-}
-
-interface FactsResponse {
-  team_name: string;
-  season: string;
-  top_5_highest: Fact[];
-  top_5_lowest: Fact[];
 }
 
 export const matchesApi = {

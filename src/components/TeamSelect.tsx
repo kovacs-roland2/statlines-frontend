@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { useTeams } from '@/hooks/useTeams';
 import { useTeamContext } from '@/context/TeamContext';
+import { TeamSelectProps } from '@/types';
 import {
   Select,
   SelectContent,
@@ -10,10 +11,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-
-interface TeamSelectProps {
-  disabled?: boolean;
-}
 
 export default function TeamSelect({ disabled = false }: TeamSelectProps) {
   const { teams, loading, error, clearError } = useTeams();

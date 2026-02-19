@@ -1,9 +1,5 @@
-import { Match } from '@/types/match';
+import { MatchCardProps } from '@/types/index';
 import { formatDate, formatTime } from '@/utils/dateHelpers';
-
-interface MatchCardProps {
-  match: Match;
-}
 
 export const MatchCard = ({ match }: MatchCardProps) => {
   return (

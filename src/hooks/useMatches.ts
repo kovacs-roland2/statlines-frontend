@@ -1,14 +1,6 @@
 import { useState, useCallback } from 'react';
-import { MatchesResponse } from '@/types/match';
+import { MatchesResponse, UseMatchesReturn } from '@/types';
 import { matchesApi, ApiError } from '@/services/api';
-
-interface UseMatchesReturn {
-  matches: MatchesResponse | null;
-  loading: boolean;
-  error: string | null;
-  fetchMatches: (teamName: string) => Promise<void>;
-  clearError: () => void;
-}
 
 export const useMatches = (): UseMatchesReturn => {
   const [matches, setMatches] = useState<MatchesResponse | null>(null);

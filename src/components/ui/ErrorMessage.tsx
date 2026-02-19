@@ -1,7 +1,4 @@
-interface ErrorMessageProps {
-  message: string;
-  onDismiss?: () => void;
-}
+import { ErrorMessageProps } from '@/types';
 
 export const ErrorMessage = ({ message, onDismiss }: ErrorMessageProps) => {
   return (

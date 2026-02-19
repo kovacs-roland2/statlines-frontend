@@ -1,11 +1,8 @@
 'use client';
 
-import React, { createContext, useContext, useState } from 'react';
+import { TeamContextType } from '@/types';
 
-interface TeamContextType {
-  selectedTeamId: string;
-  setSelectedTeamId: (teamId: string) => void;
-}
+import React, { createContext, useContext, useState } from 'react';
 
 const TeamContext = createContext<TeamContextType | undefined>(undefined);
 
