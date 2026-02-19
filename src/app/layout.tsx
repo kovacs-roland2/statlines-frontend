@@ -1,6 +1,9 @@
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
+import React, { Suspense } from 'react';
+import NavigationBar from '@/components/NavigationBar';
+import { TeamProvider } from '@/context/TeamContext';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -25,9 +28,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} min-h-screen antialiased`}
       >
-        {children}
+        <TeamProvider>
+          <Suspense
+            fallback={<nav className="h-12 w-full border-b bg-white" />}
+          >
+            <NavigationBar />
+          </Suspense>
+          <main className="p-8">{children}</main>
+        </TeamProvider>
       </body>
     </html>
   );

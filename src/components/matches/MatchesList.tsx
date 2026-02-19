@@ -1,9 +1,5 @@
-import { MatchesResponse } from '@/types/match';
+import { MatchesListProps } from '@/types/index';
 import { MatchCard } from './MatchCard';
-
-interface MatchesListProps {
-  matches: MatchesResponse;
-}
 
 export const MatchesList = ({ matches }: MatchesListProps) => {
   if (matches.matches.length === 0) {
@@ -21,7 +17,7 @@ export const MatchesList = ({ matches }: MatchesListProps) => {
       <div className="rounded-lg bg-gray-50 p-4">
         <h2 className="mb-2 text-xl font-semibold">{matches.team_name}</h2>
         <p className="text-gray-600">
-          Total matches found: {matches.total_matches_found}
+          Previous {matches.total_matches_found} matches:
         </p>
       </div>
 

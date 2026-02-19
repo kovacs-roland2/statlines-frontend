@@ -1,11 +1,4 @@
-interface LoadingButtonProps {
-  onClick: () => void;
-  loading: boolean;
-  disabled?: boolean;
-  children: React.ReactNode;
-  loadingText?: string;
-  className?: string;
-}
+import { LoadingButtonProps } from '@/types';
 
 export const LoadingButton = ({
   onClick,

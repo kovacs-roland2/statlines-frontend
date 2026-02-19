@@ -1,25 +1,12 @@
-import { LoadingButton } from '@/components/ui/LoadingButton';
+'use client';
+import { MatchesHeaderProps } from '@/types';
 
-interface MatchesHeaderProps {
-  onFetchMatches: () => void;
-  loading: boolean;
-}
-
-export const MatchesHeader = ({
-  onFetchMatches,
-  loading,
-}: MatchesHeaderProps) => {
+export function MatchesHeader({ loading }: MatchesHeaderProps) {
   return (
-    <div className="mb-8">
-      <h1 className="mb-4 text-3xl font-bold">Arsenal Matches</h1>
-      <p className="mb-6 text-gray-600">
-        Click the button below to fetch Arsenal's latest matches from the
-        backend API.
-      </p>
-
-      <LoadingButton onClick={onFetchMatches} loading={loading}>
-        Fetch Arsenal Matches
-      </LoadingButton>
+    <div className="mb-8 flex items-center justify-between">
+      <div className="text-sm text-gray-500">
+        {loading && 'Loading matches...'}
+      </div>
     </div>
   );
-};
+}

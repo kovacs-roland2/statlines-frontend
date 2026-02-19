@@ -1,19 +1,19 @@
 import { useState, useCallback } from 'react';
-import { MatchesResponse, UseMatchesReturn } from '@/types';
-import { matchesApi, ApiError } from '@/services/api';
+import { factsApi, ApiError } from '@/services/api';
+import { FactsResponse, UseFactsReturn } from '@/types/index';
 
-export const useMatches = (): UseMatchesReturn => {
-  const [matches, setMatches] = useState<MatchesResponse | null>(null);
+export const useFacts = (): UseFactsReturn => {
+  const [facts, setFacts] = useState<FactsResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchMatches = useCallback(async (teamName: string) => {
+  const fetchFacts = useCallback(async (teamName: string) => {
     setLoading(true);
     setError(null);
 
     try {
-      const data = await matchesApi.getTeamMatches(teamName);
-      setMatches(data);
+      const data = await factsApi.getTeamFacts(teamName);
+      setFacts(data);
     } catch (err) {
       if (err instanceof ApiError) {
         setError(err.message);
@@ -30,10 +30,10 @@ export const useMatches = (): UseMatchesReturn => {
   }, []);
 
   return {
-    matches,
+    facts,
     loading,
     error,
-    fetchMatches,
+    fetchFacts,
     clearError,
   };
 };

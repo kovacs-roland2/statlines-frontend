@@ -1,4 +1,5 @@
-import { MatchesResponse } from '@/types/match';
+import { MatchesResponse } from '@/types/index';
+import { TeamsResponse, FactsResponse } from '@/types';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
@@ -20,6 +21,56 @@ export const matchesApi = {
       if (!response.ok) {
         throw new ApiError(
           `Failed to fetch matches: ${response.statusText}`,
+          response.status
+        );
+      }
+
+      return await response.json();
+    } catch (error) {
+      if (error instanceof ApiError) {
+        throw error;
+      }
+      throw new ApiError(
+        error instanceof Error ? error.message : 'An unknown error occurred'
+      );
+    }
+  },
+};
+
+export const teamsApi = {
+  async getTeams(): Promise<TeamsResponse> {
+    try {
+      const response = await fetch(`${API_BASE_URL}/teams`);
+
+      if (!response.ok) {
+        throw new ApiError(
+          `Failed to fetch teams: ${response.statusText}`,
+          response.status
+        );
+      }
+
+      return await response.json();
+    } catch (error) {
+      if (error instanceof ApiError) {
+        throw error;
+      }
+      throw new ApiError(
+        error instanceof Error ? error.message : 'An unknown error occurred'
+      );
+    }
+  },
+};
+
+export const factsApi = {
+  async getTeamFacts(teamName: string): Promise<FactsResponse> {
+    try {
+      const response = await fetch(
+        `${API_BASE_URL}/teams/interesting_team_data?team_name=${encodeURIComponent(teamName)}`
+      );
+
+      if (!response.ok) {
+        throw new ApiError(
+          `Failed to fetch facts: ${response.statusText}`,
           response.status
         );
       }
